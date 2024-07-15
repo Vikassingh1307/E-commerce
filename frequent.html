@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping FAQs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .faq-question {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+        }
+
+        .faq-question::after {
+            content: "+";
+            float: right;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-question::after {
+            content: "-";
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shopping FAQs</h1>
+
+        <div class="faq-item">
+            <div class="faq-question">1. How do I place an order?</div>
+            <div class="faq-answer">To place an order, follow these steps: ...</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">2. What are the shipping options?</div>
+            <div class="faq-answer">We offer various shipping options, including ...</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">3. Can I return an item?</div>
+            <div class="faq-answer">Yes, you can return items within 30 days of purchase...</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">4. How do I track my order?</div>
+            <div class="faq-answer">You can track your order by logging into your account...</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">5. Do you offer international shipping?</div>
+            <div class="faq-answer">Yes, we offer international shipping to many countries...</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">6. What payment methods do you accept?</div>
+            <div class="faq-answer">We accept various payment methods, including credit cards and PayPal...</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">7. How can I contact customer support?</div>
+            <div class="faq-answer">You can contact our customer support team by phone at +123-456-7890 or via email...</div>
+        </div>
+    </div>
+
+    <script>
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach((question) => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .cart {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 400px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple Shopping Cart</h1>
+
+    <div class="cart">
+        <h2>Your Cart</h2>
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cart items will be added here dynamically -->
+            </tbody>
+        </table>
+        <p class="total">Total: $<span id="total">0.00</span></p>
+    </div>
+
+    <h2>Available Items</h2>
+
+    <div id="items">
+        <div>
+            <span>Item 1</span>
+            <span>$10.00</span>
+            <button onclick="addToCart('Item 1', 10.00)">Add to Cart</button>
+        </div>
+        <div>
+            <span>Item 2</span>
+            <span>$15.00</span>
+            <button onclick="addToCart('Item 2', 15.00)">Add to Cart</button>
+        </div>
+        <!-- Add more items as needed -->
+    </div>
+
+    <script>
+        function addToCart(item, price) {
+            // Create a new row for the cart table
+            var table = document.getElementById("cartTable").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+
+            // Insert cells for item, price, and action
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = item;
+            cell2.innerHTML = "$" + price.toFixed(2);
+            cell3.innerHTML = '<button onclick="removeFromCart(this, ' + price + ')">Remove</button>';
+
+            // Update the total
+            updateTotal(price);
+        }
+
+        function removeFromCart(button, price) {
+            // Remove the row
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+
+            // Update the total
+            updateTotal(-price);
+        }
+
+        function updateTotal(amount) {
+            // Update the total amount
+            var totalElement = document.getElementById("total");
+            var currentTotal = parseFloat(totalElement.innerText);
+            totalElement.innerText = (currentTotal + amount).toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
